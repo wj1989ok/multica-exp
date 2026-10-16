@@ -1,0 +1,129 @@
+{
+  "back": "返回",
+  "tabs": {
+    "home": "首页",
+    "inbox": "收件箱",
+    "my_issues": "我的任务",
+    "me": "我的",
+    "chat": "聊天",
+    "search": "搜索",
+    "more": "更多"
+  },
+  "home": {
+    "greeting": "{{name}}，你好",
+    "subtitle": "你的工作区动态、分配任务和智能体对话。",
+    "new_issue": "新建任务",
+    "new_chat": "新建聊天",
+    "today": "今日",
+    "unread_inbox": "未读收件箱",
+    "assigned_tasks": "分配给我的任务",
+    "projects": "项目",
+    "active_agents": "工作中的智能体",
+    "recent_activity": "近期动态",
+    "view_all": "查看全部",
+    "no_recent_activity": "最近没有新动态"
+  },
+  "me": {
+    "tools": "工具",
+    "account": "账户",
+    "purchases": "购买项目",
+    "server_workspace": "服务器与工作区",
+    "workspace": "工作区"
+  },
+  "explore": {
+    "go_to": "前往",
+    "search_placeholder": "搜索任务和项目",
+    "no_recent": "暂无近期任务",
+    "no_recent_hint": "先从任务或项目中打开最近查看的内容。",
+    "links": {
+      "chat": { "title": "聊天", "subtitle": "浏览聊天历史" },
+      "tasks": { "title": "任务", "subtitle": "工作区任务列表" },
+      "profile": { "title": "个人资料", "subtitle": "个人资料和通知" },
+      "skills": { "title": "Skills", "subtitle": "工作区技能" }
+    }
+  },
+  "agents": {
+    "office_title": "智能体办公区",
+    "load_failed": "暂时无法加载智能体。",
+    "retry": "重试",
+    "empty_title": "还没有智能体",
+    "empty_hint": "此工作区尚无可用智能体。",
+    "start_chat": "开始聊天",
+    "working": "工作中",
+    "idle": "空闲",
+    "recent_errors": "最近异常",
+    "workspace_zone": "工作区",
+    "more_agents": "还有 {{count}} 个智能体",
+    "team_title": "团队",
+    "agent_count_other": "{{count}} 个智能体",
+    "no_recent_errors": "最近没有异常",
+    "no_filtered_agents": "没有符合此筛选条件的智能体",
+    "filter_title": {
+      "working": "工作中",
+      "idle": "空闲",
+      "errors": "最近异常"
+    },
+    "workload": {
+      "working_one": "工作中 · {{count}} 次运行",
+      "working_other": "工作中 · {{count}} 次运行",
+      "queued": "排队中",
+      "idle": "空闲",
+      "online": "在线",
+      "unstable": "连接不稳定",
+      "offline": "离线",
+      "archived": "已归档"
+    },
+    "status": {
+      "online": "在线",
+      "unstable": "连接不稳定",
+      "offline": "离线"
+    }
+  },
+  "catalog": {
+    "empty": "这里还没有内容。",
+    "error": "暂时无法加载，请重试。",
+    "retry": "重试",
+    "team_fallback": "{{count}} 位成员",
+    "runtime_status": { "online": "在线", "offline": "离线" }
+  },
+  "usage": {
+    "tokens_7d": "最近 7 天 Token 用量",
+    "runs_7d": "运行次数",
+    "runs_hint": "近 7 天工作区汇总",
+    "empty": "最近 7 天暂无用量数据"
+  },
+  "more_menu": {
+    "pinned": "已固定",
+    "issues": "任务",
+    "projects": "项目",
+    "account_settings": "账号设置"
+  },
+  "routes": {
+    "issues": "任务",
+    "projects": "项目",
+    "settings": "设置",
+    "profile": "个人资料",
+    "notifications": "通知",
+    "search": "搜索",
+    "issue": "任务",
+    "project": "项目",
+    "assignee": "负责人",
+    "mention": "提及",
+    "agents": "智能体",
+    "skills": "Skills",
+    "automations": "自动化",
+    "runtimes": "运行时",
+    "teams": "团队",
+    "labels": "标签",
+    "usage": "用量",
+    "pinned": "已固定",
+    "switch_workspace": "切换工作区",
+    "new_issue": "新建任务",
+    "new_project": "新建项目",
+    "edit_issue": "编辑任务",
+    "edit_project": "编辑项目",
+    "runs": "运行",
+    "add_resource": "添加资源",
+    "recent": "最近"
+  }
+}
