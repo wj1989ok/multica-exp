@@ -1,0 +1,96 @@
+name: Mobile Android APK
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+      - "!v*-dirty*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag to build and attach an APK to
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mobile-android-release-${{ inputs.tag || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve release tag
+        id: release
+        shell: bash
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          tag="${INPUT_TAG:-$REF_NAME}"
+          if [[ ! "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ || "$tag" == *-dirty* ]]; then
+            echo "::error::Expected a clean semantic version tag, got '$tag'."
+            exit 1
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout tagged source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.release.outputs.tag }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install workspace dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Android project
+        working-directory: apps/mobile
+        env:
+          APP_ENV: production
+        run: pnpm exec expo prebuild --platform android --non-interactive
+
+      - name: Build production ARM64 APK
+        working-directory: apps/mobile/android
+        env:
+          APP_ENV: production
+        run: ./gradlew assembleRelease -PreactNativeArchitectures=arm64-v8a
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: multica-android-${{ steps.release.outputs.tag }}-arm64
+          path: apps/mobile/android/app/build/outputs/apk/release/app-release.apk
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish APK on GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.release.outputs.tag }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          apk="apps/mobile/android/app/build/outputs/apk/release/app-release.apk"
+          if ! gh release view "$TAG" --repo "$REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$TAG" --repo "$REPOSITORY" --title "$TAG" --generate-notes
+          fi
+          gh release upload "$TAG" "$apk#multica-android-${TAG}-arm64.apk" --repo "$REPOSITORY" --clobber

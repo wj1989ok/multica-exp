@@ -74,6 +74,8 @@ adb shell monkey -p ai.multica.mobile 1
 
 Run the install command from `apps/mobile/android`, or use the full APK path from the repository root. `-r` preserves app data and only updates an already installed app when the package ID and signing certificate match. This local Release build uses the generated Android debug keystore; it is for development/device testing, not store distribution.
 
+For tagged releases, `.github/workflows/mobile-android-release.yml` builds the same production ARM64 APK on GitHub Actions and attaches it to the matching GitHub Release. The workflow can also be run manually with an existing version tag, which is useful when enabling the workflow after a tag was already pushed. These APKs use the generated debug keystore and are not signed for Play Store distribution.
+
 ### After reinstalling dependencies
 
 Gradle caches React Native autolinking output in `android/build/generated/autolinking/autolinking.json`. Its cache invalidation checks package/config file hashes, but does not notice that a package's physical `.pnpm` path changed after a dependency reinstall. The cached JSON can therefore point at old, now-missing module directories and fail with errors such as `No matching variant of project ... was found` or missing native Gradle tasks.
