@@ -1,0 +1,130 @@
+{
+  "back": "Back",
+  "tabs": {
+    "home": "Home",
+    "inbox": "Inbox",
+    "my_issues": "My Issues",
+    "me": "Me",
+    "chat": "Chat",
+    "search": "Search",
+    "more": "More"
+  },
+  "home": {
+    "greeting": "Hi, {{name}}",
+    "subtitle": "Your workspace activity, assigned work, and agents.",
+    "new_issue": "New issue",
+    "new_chat": "New chat",
+    "today": "Today",
+    "unread_inbox": "Unread inbox",
+    "assigned_tasks": "Assigned to me",
+    "projects": "Projects",
+    "active_agents": "Working agents",
+    "recent_activity": "Recent activity",
+    "view_all": "View all",
+    "no_recent_activity": "No recent activity"
+  },
+  "me": {
+    "tools": "Tools",
+    "account": "Account",
+    "purchases": "Purchases",
+    "server_workspace": "Server & Workspace",
+    "workspace": "Workspace"
+  },
+  "explore": {
+    "go_to": "Go to",
+    "search_placeholder": "Search issues and projects",
+    "no_recent": "No recent tasks",
+    "no_recent_hint": "Open an issue or project to start your recent list.",
+    "links": {
+      "chat": { "title": "Chat", "subtitle": "Browse chat history" },
+      "tasks": { "title": "Issues", "subtitle": "Workspace issue list" },
+      "profile": { "title": "Profile", "subtitle": "Profile and notifications" },
+      "skills": { "title": "Skills", "subtitle": "Workspace skills" }
+    }
+  },
+  "agents": {
+    "office_title": "Agent Office",
+    "load_failed": "Agents could not be loaded.",
+    "retry": "Retry",
+    "empty_title": "No agents yet",
+    "empty_hint": "There are no available agents in this workspace.",
+    "start_chat": "Start chat",
+    "working": "Working",
+    "idle": "Idle",
+    "recent_errors": "Recent errors",
+    "workspace_zone": "Workspace",
+    "more_agents": "+{{count}} more agents",
+    "team_title": "Team",
+    "agent_count_one": "{{count}} agent",
+    "agent_count_other": "{{count}} agents",
+    "no_recent_errors": "No recent errors",
+    "no_filtered_agents": "No agents match this filter",
+    "filter_title": {
+      "working": "Working",
+      "idle": "Idle",
+      "errors": "Recent errors"
+    },
+    "workload": {
+      "working_one": "Working · {{count}} run",
+      "working_other": "Working · {{count}} runs",
+      "queued": "Queued",
+      "idle": "Idle",
+      "online": "Online",
+      "unstable": "Unstable connection",
+      "offline": "Offline",
+      "archived": "Archived"
+    },
+    "status": {
+      "online": "Online",
+      "unstable": "Unstable connection",
+      "offline": "Offline"
+    }
+  },
+  "catalog": {
+    "empty": "Nothing here yet.",
+    "error": "Could not load this list. Try again.",
+    "retry": "Retry",
+    "team_fallback": "{{count}} members",
+    "runtime_status": { "online": "Online", "offline": "Offline" }
+  },
+  "usage": {
+    "tokens_7d": "Token usage in the last 7 days",
+    "runs_7d": "Runs",
+    "runs_hint": "Workspace total for the last 7 days",
+    "empty": "No usage data in the last 7 days"
+  },
+  "more_menu": {
+    "pinned": "Pinned",
+    "issues": "Issues",
+    "projects": "Projects",
+    "account_settings": "Account settings"
+  },
+  "routes": {
+    "issues": "Issues",
+    "projects": "Projects",
+    "settings": "Settings",
+    "profile": "Profile",
+    "notifications": "Notifications",
+    "search": "Search",
+    "issue": "Issue",
+    "project": "Project",
+    "assignee": "Assignee",
+    "mention": "Mention",
+    "agents": "Agents",
+    "skills": "Skills",
+    "automations": "Automations",
+    "runtimes": "Runtimes",
+    "teams": "Teams",
+    "labels": "Labels",
+    "usage": "Usage",
+    "pinned": "Pinned",
+    "switch_workspace": "Switch workspace",
+    "new_issue": "New issue",
+    "new_project": "New project",
+    "edit_issue": "Edit issue",
+    "edit_project": "Edit project",
+    "runs": "Runs",
+    "add_resource": "Add resource",
+    "recent": "Recent"
+  }
+}
