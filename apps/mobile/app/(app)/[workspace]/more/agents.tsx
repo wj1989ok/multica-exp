@@ -199,7 +199,7 @@ function OfficeScene({
     .slice(0, 4);
   const extraCount = Math.max(0, agents.length - shownAgents.length);
   return (
-    <View accessibilityLabel={`${label}. ${extraCount > 0 ? plusLabel({ count: extraCount }) : ""}`} className="overflow-hidden rounded-[28px] border border-[#3d3653]" style={{ backgroundColor: "#211d30" }}>
+    <View accessibilityLabel={`${label}. ${extraCount > 0 ? plusLabel({ count: extraCount }) : ""}`} className="overflow-hidden rounded-4xl border border-[#3d3653]" style={{ backgroundColor: "#211d30" }}>
       <View className="h-[82px] flex-row items-center justify-between border-b-2 border-[#514760] px-5" style={{ backgroundColor: "#29243a" }}>
         <View className="absolute left-0 right-0 top-0 h-2 flex-row">
           <View className="flex-1 bg-[#302a43]" /><View className="mx-1 flex-1 bg-[#27243a]" /><View className="flex-1 bg-[#302a43]" />
