@@ -11,11 +11,15 @@
  *   - `composer-attachment-row.tsx`         → completed non-image chip
  *                                             tap → Linking.openURL
  */
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   resolveAttachmentUrl,
   resolveAttachmentUrlWithBase,
 } from "./attachment-url";
+
+vi.mock("@/data/backend-config-store", () => ({
+  getApiUrl: () => "https://api.example.test",
+}));
 
 describe("resolveAttachmentUrlWithBase", () => {
   const BASE = "https://api.example.test";

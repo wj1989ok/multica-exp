@@ -43,7 +43,10 @@ describe("iOS scene lifecycle configuration", () => {
     expect(config.scheme).toBe("multica");
     expect(config.plugins).toContainEqual([
       "expo-build-properties",
-      { ios: { buildReactNativeFromSource: true, enableSceneSupport: true } },
+      {
+        android: {},
+        ios: { buildReactNativeFromSource: true, enableSceneSupport: true },
+      },
     ]);
   });
 

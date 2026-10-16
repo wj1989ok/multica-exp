@@ -27,6 +27,10 @@ vi.mock("@/data/auth-store", () => ({ useAuthStore: () => "user-1" }));
 vi.mock("@/data/workspace-store", () => ({ useWorkspaceStore: () => "workspace" }));
 vi.mock("@/data/secure-storage", () => ({ getToken: async () => "token" }));
 vi.mock("@/data/api", () => ({ api: { getToken: () => "token" } }));
+vi.mock("@/data/backend-config-store", () => ({
+  getApiUrl: () => "https://example.test",
+  useApiUrl: () => "https://example.test",
+}));
 
 // Run the provider's effect and its actual WSClient, without rendering RN.
 class MockWebSocket {

@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 // and a renewal can be interleaved in either order.
 const keychain = vi.hoisted(() => ({
   value: null as string | null,
+  legacyValue: null as string | null,
   // When held, the operation suspends on entry and stays there until the test
   // releases it. `onSetEnter` fires at that moment, so a test can await the
   // exact instant a write is in flight instead of guessing at microtask
@@ -22,28 +23,33 @@ const keychain = vi.hoisted(() => ({
 // expo-secure-store underneath is faked, with hold/release so a test can pin
 // an interleaving instead of guessing at microtask counts.
 vi.mock("expo-secure-store", () => ({
-  getItemAsync: vi.fn(async () => keychain.value),
-  setItemAsync: vi.fn(async (_key: string, token: string) => {
+  getItemAsync: vi.fn(async (key: string) =>
+    key === "multica_token" ? keychain.legacyValue : keychain.value,
+  ),
+  setItemAsync: vi.fn(async (key: string, token: string) => {
     if (keychain.holdSet) {
       await new Promise<void>((resolve) => {
         keychain.releaseSet = resolve;
         keychain.onSetEnter?.();
       });
     }
-    keychain.value = token;
+    if (key === "multica_token") keychain.legacyValue = token;
+    else keychain.value = token;
   }),
-  deleteItemAsync: vi.fn(async () => {
+  deleteItemAsync: vi.fn(async (key: string) => {
     if (keychain.holdClear) {
       await new Promise<void>((resolve) => {
         keychain.releaseClear = resolve;
       });
     }
-    keychain.value = null;
+    if (key === "multica_token") keychain.legacyValue = null;
+    else keychain.value = null;
   }),
 }));
 
 function resetKeychain() {
   keychain.value = "token-v1";
+  keychain.legacyValue = null;
   keychain.holdSet = false;
   keychain.releaseSet = null;
   keychain.onSetEnter = null;

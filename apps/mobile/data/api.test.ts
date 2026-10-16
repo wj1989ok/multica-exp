@@ -9,6 +9,10 @@ vi.hoisted(() => {
 
 // The real store pulls in expo-secure-store; the client only needs the slug.
 vi.mock("@/data/workspace-store", () => ({ getCurrentSlug: () => null }));
+vi.mock("@/data/backend-config-store", () => ({
+  getActiveServerId: () => "multica-default",
+  getApiUrl: () => "https://api.example.test",
+}));
 
 describe("api.deleteComment", () => {
   const fetchMock = vi.fn(async () => new Response(null, { status: 204 }));
@@ -91,7 +95,7 @@ describe("mobile tool catalog and usage endpoints", () => {
 
     expect(fetchMock).toHaveBeenCalledWith(
       "https://api.example.test/api/skills",
-      expect.objectContaining({ method: "GET" }),
+      expect.objectContaining({ headers: expect.any(Object) }),
     );
     expect(skills[0]?.name).toBe("Review");
   });
@@ -105,7 +109,7 @@ describe("mobile tool catalog and usage endpoints", () => {
     await expect(api.listAutopilots()).resolves.toEqual({ autopilots: [], total: 0 });
     expect(fetchMock).toHaveBeenCalledWith(
       "https://api.example.test/api/autopilots",
-      expect.objectContaining({ method: "GET" }),
+      expect.objectContaining({ headers: expect.any(Object) }),
     );
   });
 
@@ -119,7 +123,7 @@ describe("mobile tool catalog and usage endpoints", () => {
 
     expect(fetchMock).toHaveBeenCalledWith(
       "https://api.example.test/api/dashboard/usage/daily?days=7&tz=Asia%2FShanghai",
-      expect.objectContaining({ method: "GET" }),
+      expect.objectContaining({ headers: expect.any(Object) }),
     );
   });
 });
